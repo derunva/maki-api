@@ -1,18 +1,7 @@
 module.exports = function(app){
-  var articles = [
-    {
-      title: 'my title',
-      pub_date: '2020/07/22',
-      short: 'some short text',
-      body: 'inner page data'
-    }
-  ]
+  var controller = require('../controllers/article_controller');
+ 
   app.route('/articles')
-    .get((req, res) =>{
-      res.json(articles)
-    })
-    .post((req, res)=> {
-      articles.push(req.body)
-      res.json(req.body)
-    })
+    .get(controller.list_articles)
+    .post(controller.create_an_article)
 }
