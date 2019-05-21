@@ -44,8 +44,10 @@ exports.delete_article = (req, res) => {
 }
 exports.create_an_article = function(req, res){
   if(!req.file){
-    res.status(420).send('error')
+    res.status(420).send('error');
+    return false;
   }
+  console.log(req.file)
   let new_article = new Article(req.body);
   new_article[req.file.fieldname] = req.file.filename;
   new_article.save(function(err, article){

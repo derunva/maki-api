@@ -12,7 +12,7 @@ mongoose.connect(connection_string, {useNewUrlParser: true});
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
-
+app.use('/images', express.static('uploads'));
 app.use(bodyParser.urlencoded({ extended: true }));
 var articles = require('./api/routes/articles_routes');
 articles(app);
