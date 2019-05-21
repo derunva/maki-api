@@ -3,7 +3,8 @@ const express = require('express'),
   port = process.env.PORT || 4000, 
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
-  Article = require('./api/models/article_model')
+  Article = require('./api/models/article_model');
+
 var password = 'ESXJ2sGbQK89MyGO'
 var connection_string = `mongodb+srv://derun:${password}@cluster0-dkoh3.mongodb.net/test?retryWrites=true`
 mongoose.Promise = global.Promise;

@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var articleSchema = new Schema({
+  main_image:{
+    type: String,
+    required: 'no image'
+  },
   title:{
     type: String,
     required: 'title is empty'
@@ -12,7 +16,7 @@ var articleSchema = new Schema({
   },
   pub_date:{
     type: Date,
-    required: 'title is empty'
+    required: 'pub_date is empty'
   } 
   
 });
