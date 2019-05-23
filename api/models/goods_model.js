@@ -20,7 +20,7 @@ var goodsSchema = new Schema({
     required: 'descr is empty'
   },
   price:{
-    type: String,
+    type: Number,
     required: 'price is empty'
   },
   images:{
@@ -36,5 +36,16 @@ var goodsSchema = new Schema({
     type: String
   }
   
+}, {
+    toObject : {getters: true},
+    toJSON : {getters: true}
+});
+goodsSchema.path('price').get(function(num) {
+  return (num / 100).toFixed(2);
+});
+
+// Setter
+goodsSchema.path('price').set(function(num) {
+  return num * 100;
 });
 module.exports = mongoose.model('Goods', goodsSchema)

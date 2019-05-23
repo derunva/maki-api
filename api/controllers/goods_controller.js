@@ -21,4 +21,13 @@ exports.list =  (req, res)=>{
 }
 exports.add = (req, res) => {
   console.log(req.body)
+  var goods_item = new Goods(req.body)
+  goods_item.save((err, item)=>{
+    if (err) {
+      res.status(400).send(err)
+    }else{
+      res.json(item)
+    }
+
+  })
 }
