@@ -1,19 +1,21 @@
 var mongoose = require('mongoose'),
   Goods = mongoose.model('Goods');
 exports.list =  (req, res)=>{
-  let limit = req.params.limit || 6;
-  let page = req.params.page || 1;
+
+  let limit = Number(req.query.limit) || 6;
+  let page = Number(req.query.page) || 1;
   page--;
-  Goods.find(
+  let options = {
+    select: 'labels image descr price',
+    limit: limit,
+    page : page
+  }
+  Goods.paginate(
     {}, 
-    { 
-      labels: 1, 
-      image: 1,
-      descr: 1,
-      price: 1 
-    }, 
-    { skip: limit*page, limit: limit }, 
+    options, 
     function(err, results) { 
+      if (err)
+        res.status(400).send(err)
       res.json(results)
     }
   );

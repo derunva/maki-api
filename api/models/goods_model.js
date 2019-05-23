@@ -48,4 +48,6 @@ goodsSchema.path('price').get(function(num) {
 goodsSchema.path('price').set(function(num) {
   return num * 100;
 });
+var mongoosePaginate = require('mongoose-paginate-v2');
+goodsSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Goods', goodsSchema)
