@@ -2,11 +2,22 @@ var mongoose = require('mongoose'),
   Article = mongoose.model('Articles');
 
 exports.list_articles = function(req, res){
-  Article.find({}, function(err, articles){
-    if(err)
-      res.send(err)
-    res.json(articles)
-  })
+  let limit = Number(req.query.limit) || 3;
+  let page = Number(req.query.page) || 1;
+  let options = {
+    select: 'title pub_date',
+    limit: limit,
+    page : page
+  }
+  Article.paginate(
+    {}, 
+    options, 
+    function(err, results) { 
+      if (err)
+        res.status(400).send(err)
+      res.json(results)
+    }
+  );
 }
 exports.show_article = function(req , res){
   var id = req.params.id;

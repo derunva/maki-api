@@ -20,5 +20,6 @@ var articleSchema = new Schema({
   } 
   
 });
-
+var mongoosePaginate = require('mongoose-paginate-v2');
+articleSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Articles', articleSchema)

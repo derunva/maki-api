@@ -2,6 +2,7 @@ const express = require('express'),
   app = express(),
   port = process.env.PORT || 4000, 
   bodyParser = require('body-parser'),
+  cors = require('cors'),
   mongoose = require('mongoose'),
   Article = require('./api/models/article_model');
   Goods = require('./api/models/goods_model');
@@ -15,6 +16,7 @@ mongoose.set('useCreateIndex', true);
 app.use(express.static('public'));
 app.use('/images', express.static('uploads'));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors())
 var articles = require('./api/routes/articles_routes');
 articles(app);
 var goods_route = require('./api/routes/goods_routes');
