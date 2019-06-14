@@ -23,12 +23,10 @@ exports.show_article = function(req , res){
   var id = req.params.id;
   Article.findById(id, function(err, article){
     if(err)
-      res.send(err)
+      res.status(420).send(err)
 
     if(article){
       res.json(article)  
-    }else{
-      res.status(404).send('not found')
     }
     
     
